@@ -1,0 +1,10 @@
+FROM golang:1.13
+
+# copy all of the source files into the go path
+COPY . /go/src/github.com/coulterac/go-api
+
+# make this our working directory so that go modules will work
+WORKDIR /go/src/github.com/coulterac/go-api
+
+# sleep and wait for infastructure, then test
+CMD go test -mod=vendor -v -cover -race ./...
